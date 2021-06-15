@@ -5,7 +5,7 @@
 
 var stringifyJSON = function(obj) {
   // if obj was a number
-  if( typeof obj === 'number') {
+  if ( typeof obj === 'number') {
     return obj.toString();
   }
 
@@ -14,31 +14,31 @@ var stringifyJSON = function(obj) {
     return 'null';
   }
 
-  if(typeof obj === 'boolean') {
+  if (typeof obj === 'boolean') {
     return obj.toString();
   }
 
   if (typeof obj === 'string') {
-    return  '"'+ obj + '"'
+    return '"' + obj + '"';
   }
 
-  if(Array.isArray(obj)) {
-    var result=[];
-    for(var i = 0; i< obj.length; i++) {
+  if (Array.isArray(obj)) {
+    var result = [];
+    for (var i = 0; i < obj.length; i++) {
       result.push(stringifyJSON(obj[i]));
     }
     return '[' + result.join(',') + ']';
   }
 
-if (typeof obj === 'object') {
-var result = [];
-  for(var key in obj){
-    if (obj[key] === undefined || typeof obj[key] === 'function') {
-      return '{}';
+  if (typeof obj === 'object') {
+    var result = [];
+    for (var key in obj) {
+      if (obj[key] === undefined || typeof obj[key] === 'function') {
+        return '{}';
+      }
+      result.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
     }
-    result.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
+    return '{' + result.join(',') + '}';
   }
-  return '{' + result.join(',') + '}' ;
-}
 
 };

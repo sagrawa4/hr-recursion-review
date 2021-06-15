@@ -7,21 +7,21 @@
 var getElementsByClassName = function(className) {
   var dom = document.body;
   if (className === undefined) {
-    return undefined
+    return undefined;
   }
   var result = [];
   var lookForClassItem = function (element) {
     if (element.classList && element.classList.contains(className)) {
-      result.push(element)
+      result.push(element);
     }
-    var childNode = element.childNodes
+    var childNode = element.childNodes;
     if (childNode) {
       for (var i = 0; i < childNode.length; i++) {
-        lookForClassItem(childNode[i])
+        lookForClassItem(childNode[i]);
       }
     }
-  }
-  lookForClassItem(dom)
+  };
+  lookForClassItem(dom);
   return result;
 
 };
